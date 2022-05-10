@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Screens</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: row;
+    }
+
+    iframe {
+        border: 1px solid black;
+        padding: 1rem;
+    }
+</style>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlObj = new URL(window.location.href);
+        const iframeUrl = urlObj.searchParams.get('url') ?? 'http://localhost:3000'
+        const sizes = [
+            {w:1920, h:1080},
+            {w:1440, h:768},
+            {w:320, h:480},
+            {w:320, h:740},
+        ]
+
+        for (const size of sizes) {
+            const iframeEl = document.createElement('iframe')
+            iframeEl.src = iframeUrl;
+            iframeEl.width = size.w;
+            iframeEl.height = size.h;
+            iframeEl.frameBorder = '0';
+            iframeEl.sandbox = 'allow-same-origin allow-forms allow-scripts';
+            iframeEl.seamless = true
+            window.document.body.appendChild(iframeEl)
+        }
+    })
+
+
+</script>
+<body>
+</body>
+</html>
